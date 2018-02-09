@@ -44,6 +44,43 @@ public class StudentService {
 		}
 
 	}
+	
+	public int updateStudent(Student student) {
+		log.debug("updateStudent()");
+		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+		try {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			int res = studentDao.updateStudent(student);
+			sqlSession.commit();
+			return res;
+		} catch (Exception e){
+			sqlSession.rollback();
+			e.printStackTrace();
+			throw new RuntimeException(e.getCause());
+		} finally {
+			sqlSession.close();
+		}
+
+	}
+	
+	public int deleteStudent(int id) {
+		log.debug("deleteStudent()");
+		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+		try {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			int res = studentDao.deleteStudent(id);
+			sqlSession.commit();
+			return res;
+		} catch (Exception e){
+			sqlSession.rollback();
+			e.printStackTrace();
+			throw new RuntimeException(e.getCause());
+		} finally {
+			sqlSession.close();
+		}
+
+	}
+
 
 	
 }

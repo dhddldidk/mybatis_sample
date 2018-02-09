@@ -14,6 +14,11 @@
 		</where>
 	</sql>
 	
+	<sql id="updatesql">
+		update students set name=#{name}, email=#{email}, phone=#{phone}, dob=#{dob}
+		where stud_id=#{studId}
+	</sql>
+	
 	<select id="selectStudentByNo" parameterType="Student" resultType="Student">
 		<include refid="selectSql"/>
 		<include refid="whereSql"/>
@@ -36,7 +41,18 @@
 		<include refid="insertSql"/>
 	</insert>
 	
+	<!-- update -->
+	<update id="updateStudent" parameterType="Student">
+		<include refid="updatesql"></include>
+	</update>
 	
+	<!-- delete -->
+	<sql id="deleteSql">
+		delete from students where stud_id=#{studId}
+	</sql>
+	<delete id="deleteStudent" parameterType="int">
+		<include refid="deleteSql"></include>
+	</delete>
 </mapper>
 
 
