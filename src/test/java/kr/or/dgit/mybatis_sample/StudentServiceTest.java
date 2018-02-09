@@ -15,10 +15,12 @@ import kr.or.dgit.mybatis_sample.dto.PhoneNumber;
 import kr.or.dgit.mybatis_sample.dto.Student;
 import kr.or.dgit.mybatis_sample.service.StudentService;
 
+
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentServiceTest {
 	private static StudentService service;
-
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		service = new StudentService();
@@ -36,13 +38,12 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void test2selectStudentByAll() {
+	public void test2FindStudentByAll() {
 		List<Student> listStd = service.findStudentByAll();
 		Assert.assertNotNull(listStd);
 		for(Student std : listStd) {
 			System.out.println(std);
 		}
-			
 	}
 	
 	@Test
@@ -52,7 +53,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void test4selectStudentByAllWithAPI() {
+	public void test4FindStudentByAllWithAPI() {
 		List<Student> listStd = service.findStudentByAllWithAPI();
 		Assert.assertNotNull(listStd);
 		for(Student std : listStd) {
@@ -63,20 +64,20 @@ public class StudentServiceTest {
 	@Test
 	public void test5CreateStudent() {
 		Calendar newDate = GregorianCalendar.getInstance();
-		newDate.set(1990, 2,28);
-		
-		Student student = new Student(5, "홍길동5", "lee@test.co.kr", new PhoneNumber("010-1234-1234"),newDate.getTime());
-		int res = service.insertStudent(student);
-		Assert.assertEquals(1, res);
+        newDate.set(1990, 2, 28);
+
+        Student student = new Student(3, "홍길동3", "lee@test.co.kr", new PhoneNumber("010-1234-1234"), newDate.getTime());
+        int res = service.createStudent(student);
+        Assert.assertEquals(1, res);
 	}
 	
 	@Test
 	public void test6CreateStudentWithAPI() {
 		Calendar newDate = GregorianCalendar.getInstance();
-		newDate.set(1990, 2,28);
-		
-		Student student = new Student(6, "홍길동6", "lee@test.co.kr", new PhoneNumber("010-5678-5678"),newDate.getTime());
-		int res = service.insertStudentWithAPI(student);
-		Assert.assertEquals(1, res);
+        newDate.set(1990, 2, 28);
+
+        Student student = new Student(4, "홍길동4", "lee@test.co.kr", new PhoneNumber("010-1234-1234"), newDate.getTime());
+        int res = service.createStudentWithAPI(student);
+        Assert.assertEquals(1, res);
 	}
 }
