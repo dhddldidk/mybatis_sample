@@ -32,6 +32,15 @@
 	<insert id="insertStudentWithAPI" parameterType="Student">
 		<include refid="insertSql"/>
 	</insert>
+	
+	<!-- update -->
+	<sql id="updateSql">
+		update students set name=#{name}, email=#{email}, phone=#{phone}, dob=#{dob}
+		where stud_id=#{studId}
+	</sql>
+	<update id="updateStudentWithAPI" parameterType="Student">
+		<include refid="updateSql"></include>
+	</update>
 </mapper>
 
 

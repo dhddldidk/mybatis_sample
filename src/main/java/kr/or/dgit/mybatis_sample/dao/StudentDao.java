@@ -13,5 +13,5 @@ public interface StudentDao {
 	int insertStudentWithAPI(Student student);
 	
 	// update
-	
+	int updateStudentWithAPI(Student student);
 }
