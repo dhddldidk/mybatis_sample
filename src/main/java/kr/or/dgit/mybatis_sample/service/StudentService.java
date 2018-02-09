@@ -65,20 +65,13 @@ public class StudentService {
 	
 	public int deleteStudent(int id) {
 		log.debug("deleteStudent()");
-		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
-		try {
+		
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
 			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
 			int res = studentDao.deleteStudent(id);
 			sqlSession.commit();
 			return res;
-		} catch (Exception e){
-			sqlSession.rollback();
-			e.printStackTrace();
-			throw new RuntimeException(e.getCause());
-		} finally {
-			sqlSession.close();
-		}
-
+		} 
 	}
 
 

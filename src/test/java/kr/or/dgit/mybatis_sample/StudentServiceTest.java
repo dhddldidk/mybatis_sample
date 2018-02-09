@@ -71,19 +71,21 @@ public class StudentServiceTest {
         student.setDob(new Date());
         
         int res = service.updateStudent(student);
-        Assert.assertEquals(1, res);
+        //안에있는 데이터베이스를 찾으려면 assertsame
+        Assert.assertSame(1, res);
         
         student.setEmail("timothy@gmail.com");
         student.setPhone(new PhoneNumber("123-456-7890"));
         student.setDob(new GregorianCalendar(1988, 04, 25).getTime());
         res = service.updateStudent(student);
+        //안에있는 데이터베이스를 찾으려면 assertsame
         Assert.assertSame(1, res);
 	}
 	
 	@Test
 	public void test5DeleteStudent() {
 		int deleteStudent = service.deleteStudent(3);
-		Assert.assertEquals(3, deleteStudent);
+		Assert.assertSame(1, deleteStudent);
         
 	}
 	
