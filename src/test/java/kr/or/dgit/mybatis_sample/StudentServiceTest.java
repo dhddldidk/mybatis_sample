@@ -57,6 +57,9 @@ public class StudentServiceTest {
 
         Student student = new Student(3, "홍길동3", "lee@test.co.kr", new PhoneNumber("010-1234-1234"), newDate.getTime());
         int res = service.createStudent(student);
+        //sql쿼리대로 문장이 잘 수행되면 1을 반환해서 res에 담아서 
+        //Assert.assertEquals(1, res);에서 equals에 1과 같으면
+        //성공 아니면 에러가 뜸
         Assert.assertEquals(1, res);
 	}
 	
