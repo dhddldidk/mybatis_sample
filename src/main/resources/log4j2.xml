@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+   <Appenders>
+      <Console name="Console" target="SYSTEM_OUT">
+         <PatternLayout pattern="%5p [%t] - %m%n" />
+      </Console>
+      <!-- append="true"하면 log파일이 계속 생김 -->
+      <File name="file" fileName="./logs/mybatis_sample.log" append="true">
+         <PatternLayout pattern="%5p [%t] - %m%n" />
+      </File>
+   </Appenders>
+
+   <Loggers>
+      <Logger name="kr.or.dgit.mybatis_sample" level="trace" additivity="true">
+         <AppenderRef ref="Console" />
+        <AppenderRef ref="file" /> 
+      </Logger>
+ 
+      <Root level="debug">
+         <AppenderRef ref="Console" />
+         <AppenderRef ref="file" />
+      </Root>
+       
+   </Loggers>
+</Configuration>
