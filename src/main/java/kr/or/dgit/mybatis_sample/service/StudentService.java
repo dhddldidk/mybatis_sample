@@ -41,4 +41,13 @@ public class StudentService {
 			return res;
 		}
 	}
+	
+	public int updateStudentWithAPI(Student student) {
+		log.debug("updateStudentWithAPI()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			int res = sqlSession.insert(namespace + "updateStudentWithAPI", student);
+			sqlSession.commit();
+			return res;
+		}
+	}
 }
