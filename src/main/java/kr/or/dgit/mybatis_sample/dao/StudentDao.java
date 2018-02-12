@@ -1,6 +1,7 @@
 package kr.or.dgit.mybatis_sample.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.dgit.mybatis_sample.dto.Student;
 
@@ -12,16 +13,19 @@ public interface StudentDao {
 
 	List<Student> selectStudentByAllForResultMap();
 
-	//resultMap Extends
+	List<Map<String, Object>> selectStudentByAllForHashMap();
+
+	// resultMap Extends
 	Student selectStudentByForResultMapExtends(Student student);
+
 	Student selectStudentByNoAssociation(Student student);
-	
+
 	// insert
 	int insertStudent(Student student);
-	
+
 	// update
 	int updateStudent(Student student);
-	
-	//delete
+
+	// delete
 	int deleteStudent(int id);
 }

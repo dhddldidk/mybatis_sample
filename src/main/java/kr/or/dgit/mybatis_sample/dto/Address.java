@@ -76,5 +76,4 @@ public class Address {
 				city, state, zip, country);
 	}
 
-	
 }
