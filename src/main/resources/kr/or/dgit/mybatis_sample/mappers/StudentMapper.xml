@@ -41,6 +41,14 @@
 	<update id="updateStudentWithAPI" parameterType="Student">
 		<include refid="updateSql"></include>
 	</update>
+	
+	<!-- delete -->
+	<sql id="deleteSql">
+		delete from students where stud_id=#{studId}
+	</sql> 
+	<delete id="deleteStudentWithAPI" parameterType="int">
+		<include refid="deleteSql"></include>
+	</delete>
 </mapper>
 
 

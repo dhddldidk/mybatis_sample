@@ -14,4 +14,7 @@ public interface StudentDao {
 	
 	// update
 	int updateStudentWithAPI(Student student);
+	
+	//delete
+	int deleteStudentWithAPI(int id);
 }
