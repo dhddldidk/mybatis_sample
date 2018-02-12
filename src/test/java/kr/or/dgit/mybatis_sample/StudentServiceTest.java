@@ -76,4 +76,12 @@ public class StudentServiceTest {
 		int res = service.deleteStudentWithAPI(5);
 		Assert.assertSame(1, res);
 	}
+	
+	@Test
+	public void test56SelectStudentByAllForResultMapWithAPI() {
+		List<Student> lists = service.findStudentByAllWithAPI();
+		List<Student> listsAPI = service.selectStudentByAllForResultMapWithAPI();
+		Assert.assertSame(lists.size(), listsAPI.size());
+		
+	}
 }
