@@ -10,7 +10,7 @@ public interface StudentDao {
 	List<Student> selectStudentByAllWithAPI();
 	List<Student> selectStudentByAllForResultMapWithAPI();
 	Student selectStudentByNoForResultMapExtendsWithAPI(Student student);
-	
+	Student selectStudentByNoAssociationWithAPI(Student student);
 	// insert
 	int insertStudentWithAPI(Student student);
 	

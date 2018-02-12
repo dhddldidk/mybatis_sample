@@ -95,4 +95,15 @@ public class StudentServiceTest {
 		Assert.assertEquals(1, extStdApi.getStudId());
 		
 	}
+	
+	@Test
+	public void test8SelectStudentByNoAssociationWithAPI() {
+		Student student = new Student();
+		student.setStudId(1);
+		
+		Student extStdd = service.selectStudentByNoAssociationWithAPI(student);
+		
+		Assert.assertEquals(1, extStdd.getStudId());
+		System.out.println(extStdd);
+	}
 }

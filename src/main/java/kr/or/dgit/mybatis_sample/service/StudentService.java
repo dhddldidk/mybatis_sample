@@ -97,4 +97,12 @@ public class StudentService {
 			return studentDao.selectStudentByNoForResultMapExtendsWithAPI(student);
 		}
 	}
+	
+	public Student selectStudentByNoAssociationWithAPI(Student student){
+		log.debug("selectStudentByNoAssociationWithAPI()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByNoAssociationWithAPI(student);
+		}
+	}
 }

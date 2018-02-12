@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.dgit.mybatis_sample.dao.AddressDao">
+	<resultMap type="Address" id="AddressResult">
+		<id property="addrId" column="addr_id"></id>
+		<result property="street" column="street"></result>
+		<result property="city" column="city"></result>
+		<result property="state" column="state"></result>
+		<result property="zip" column="zip"></result>
+		<result property="country" column="country"></result>
+	</resultMap>
+</mapper>
