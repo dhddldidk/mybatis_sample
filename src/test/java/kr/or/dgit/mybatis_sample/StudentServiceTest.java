@@ -100,4 +100,14 @@ public class StudentServiceTest {
 		Assert.assertSame(lists.size(), listStd2.size());
 	}
 	
+	@Test
+	public void test7selectStudentByForResultMapExtends() {
+		Student student = new Student();
+		student.setStudId(1);
+		
+		Student extStd = service.selectStudentByForResultMapExtends(student);
+		
+		Assert.assertEquals(1, extStd.getStudId());
+	}
+	
 }

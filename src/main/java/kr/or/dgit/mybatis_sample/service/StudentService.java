@@ -82,5 +82,13 @@ public class StudentService {
 		}
 	}
 	
+	public Student selectStudentByForResultMapExtends(Student student){
+		log.debug("selectStudentByForResultMapExtends()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByForResultMapExtends(student);
+		}
+	}
+	
 	
 }

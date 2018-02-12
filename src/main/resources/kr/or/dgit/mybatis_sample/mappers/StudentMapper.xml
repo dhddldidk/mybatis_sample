@@ -70,6 +70,27 @@
 	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
 		<include refid="selectSql2"></include>
 	</select>
+	
+	<!-- 결과매핑확장 typehandler안써도 되는 방법 -->
+	<resultMap type="Student" id="StudentWithAddressResult" extends="StudentResult">
+		<result property="address.addrId" column="addr_id"></result>
+		<result property="address.street" column="street"></result>
+		<result property="address.city" column="city"></result>
+		<result property="address.state" column="state"></result>
+		<result property="address.zip" column="zip"></result>
+		<result property="address.country" column="country"></result>
+	</resultMap>
+	
+	<sql id="selectJoinAddressSql">
+		SELECT stud_id, name, email, phone, A.addr_id, city,
+		state, zip, country FROM students s left outer join
+		addresses a on s.addr_id=a.addr_id
+	</sql>
+	<select id="selectStudentByForResultMapExtends" parameterType="Student"
+	resultMap="StudentWithAddressResult">
+		<include refid="selectJoinAddressSql"></include>
+		<include refid="whereSql"></include>
+	</select>
 </mapper>
 
 
