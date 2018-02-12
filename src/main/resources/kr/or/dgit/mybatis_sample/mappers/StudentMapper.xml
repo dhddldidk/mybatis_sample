@@ -82,7 +82,7 @@
 	</resultMap>
 	
 	<sql id="selectJoinAddressSql">
-		SELECT stud_id, name, email, phone, A.addr_id, city,
+		SELECT stud_id, name, email, dob, phone, A.addr_id, city,
 		state, zip, country FROM students s left outer join
 		addresses a on s.addr_id=a.addr_id
 	</sql>

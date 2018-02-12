@@ -118,6 +118,7 @@ public class StudentServiceTest {
 		Student extStdd = service.selectStudentByNoAssociation(student);
 		
 		Assert.assertEquals(1, extStdd.getStudId());
+		System.out.println(extStdd);
 	}
 	
 }
