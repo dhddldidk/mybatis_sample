@@ -65,6 +65,10 @@
 		<include refid="selectSql2"></include>
 	</select>
 	
+	<select id="selectStudentByAllForHashMapWithAPI" resultType="map">
+		<include refid="selectSql2"/>
+	</select>
+	
 	<!-- 결과매핑확장 typehandler안써도 되는 방법 -->
 	<resultMap type="Student" id="StudentWithAddressResult" extends="StudentResult">
 		<result property="address.addrId" column="addr_id"></result>

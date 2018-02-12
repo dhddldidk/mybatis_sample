@@ -1,6 +1,7 @@
 package kr.or.dgit.mybatis_sample.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.dgit.mybatis_sample.dto.Student;
 
@@ -9,6 +10,8 @@ public interface StudentDao {
 	Student selectStudentByNoWithAPI(Student student);
 	List<Student> selectStudentByAllWithAPI();
 	List<Student> selectStudentByAllForResultMapWithAPI();
+	List<Map<String, Object>> selectStudentByAllForHashMapWithAPI();
+	
 	Student selectStudentByNoForResultMapExtendsWithAPI(Student student);
 	Student selectStudentByNoAssociationWithAPI(Student student);
 	// insert
