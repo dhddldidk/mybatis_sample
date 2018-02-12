@@ -78,10 +78,21 @@ public class StudentServiceTest {
 	}
 	
 	@Test
-	public void test56SelectStudentByAllForResultMapWithAPI() {
+	public void test6SelectStudentByAllForResultMapWithAPI() {
 		List<Student> lists = service.findStudentByAllWithAPI();
 		List<Student> listsAPI = service.selectStudentByAllForResultMapWithAPI();
 		Assert.assertSame(lists.size(), listsAPI.size());
+		
+	}
+	
+	@Test
+	public void test7SelectStudentByNoForResultMapExtendsWithAPI() {
+		Student student = new Student();
+		student.setStudId(1);
+		
+		Student extStdApi = service.selectStudentByNoForResultMapExtendsWithAPI(student);
+		
+		Assert.assertEquals(1, extStdApi.getStudId());
 		
 	}
 }
