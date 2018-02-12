@@ -110,4 +110,14 @@ public class StudentServiceTest {
 		Assert.assertEquals(1, extStd.getStudId());
 	}
 	
+	@Test
+	public void test8SelectStudentByNoAssociation() {
+		Student student = new Student();
+		student.setStudId(1);
+		
+		Student extStdd = service.selectStudentByNoAssociation(student);
+		
+		Assert.assertEquals(1, extStdd.getStudId());
+	}
+	
 }

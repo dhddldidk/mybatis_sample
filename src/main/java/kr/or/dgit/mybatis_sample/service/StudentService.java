@@ -90,5 +90,11 @@ public class StudentService {
 		}
 	}
 	
-	
+	public Student selectStudentByNoAssociation(Student student){
+		log.debug("selectStudentByNoAssociation()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByNoAssociation(student);
+		}
+	}
 }
