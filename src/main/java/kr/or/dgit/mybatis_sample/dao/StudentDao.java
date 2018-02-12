@@ -10,6 +10,7 @@ public interface StudentDao {
 
 	List<Student> selectStudentByAll();
 
+	List<Student> selectStudentByAllForResultMap();
 
 	// insert
 	int insertStudent(Student student);

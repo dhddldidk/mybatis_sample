@@ -92,4 +92,12 @@ public class StudentServiceTest {
         
 	}
 	
+	@Test
+	public void test6SelectStudentByAllForResultMap() {
+		List<Student> lists = service.selectStudentByAllForResultMap();
+		List<Student> listStd2 = service.findStudentByAll();
+		
+		Assert.assertSame(lists.size(), listStd2.size());
+	}
+	
 }
