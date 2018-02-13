@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.dgit.mybatis_sample.dao.CourseDao">
+	<resultMap type="Course" id="CourseResult">
+		<id property="courseId" column="course_id"></id>
+		<result property="name" column="name"></result>
+		<result property="description" column="description"></result>
+		<result property="startDate" column="start_date"></result>
+		<result property="endDate" column="end_date"></result>
+	</resultMap>
+</mapper>
