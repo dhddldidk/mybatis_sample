@@ -8,27 +8,29 @@
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"></setting>
 	</settings>
-  
+
 	<typeAliases>
-		<package name="kr.or.dgit.mybatis_sample.dto"/>
-	</typeAliases>  
-	
+		<package name="kr.or.dgit.mybatis_sample.dto" />
+	</typeAliases>
+
 	<typeHandlers>
-		<package name="kr.or.dgit.mybatis_sample.typehandler"/>
+		<package name="kr.or.dgit.mybatis_sample.typehandler" />
 	</typeHandlers>
-  <environments default="development">
-    <environment id="development">
-      <transactionManager type="JDBC"/>
-      <dataSource type="POOLED">
-        <property name="driver" value="${driver}"/>
-        <property name="url" value="${url}"/>
-        <property name="username" value="${username}"/>
-        <property name="password" value="${password}"/>
-      </dataSource>
-    </environment>
-  </environments>
-  <mappers>
-   	<mapper resource="kr/or/dgit/mybatis_sample/mappers/StudentMapper.xml"/>
-   	<mapper resource="kr/or/dgit/mybatis_sample/mappers/AddressMapper.xml"/>
-  </mappers>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="kr/or/dgit/mybatis_sample/mappers/StudentMapper.xml" />
+		<mapper resource="kr/or/dgit/mybatis_sample/mappers/AddressMapper.xml" />
+		<mapper resource="kr/or/dgit/mybatis_sample/mappers/CourseMapper.xml" />
+		<mapper resource="kr/or/dgit/mybatis_sample/mappers/TutorMapper.xml" />
+	</mappers>
 </configuration>
