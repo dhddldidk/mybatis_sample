@@ -43,6 +43,15 @@ public class StudentService {
 		}
 	}
 	
+	public int createEnumStudentWithAPI(Student student) {
+		log.debug("createEnumStudentWithAPI()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			int res = sqlSession.insert(namespace + "insertEnumStudentWithAPI", student);
+			sqlSession.commit();
+			return res;
+		}
+	}
+	
 	public int updateStudentWithAPI(Student student) {
 		log.debug("updateStudentWithAPI()");
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();

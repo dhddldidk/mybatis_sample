@@ -17,13 +17,12 @@ import org.junit.runners.MethodSorters;
 import kr.or.dgit.mybatis_sample.dto.PhoneNumber;
 import kr.or.dgit.mybatis_sample.dto.Student;
 import kr.or.dgit.mybatis_sample.service.StudentService;
-
-
+import kr.or.dgit.mybatis_sample.type.Gender;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentServiceTest {
 	private static StudentService service;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		service = new StudentService();
@@ -44,21 +43,21 @@ public class StudentServiceTest {
 	public void test2FindStudentByAllWithAPI() {
 		List<Student> listStd = service.findStudentByAllWithAPI();
 		Assert.assertNotNull(listStd);
-		for(Student std : listStd) {
+		for (Student std : listStd) {
 			System.out.println(std);
 		}
 	}
-	
+
 	@Test
 	public void test3CreateStudentWithAPI() {
 		Calendar newDate = GregorianCalendar.getInstance();
-        newDate.set(1990, 2, 28);
+		newDate.set(1990, 2, 28);
 
-        Student student = new Student(5, "홍길동5", "lee@test.co.kr", new PhoneNumber("010-1234-1234"), newDate.getTime());
-        int res = service.createStudentWithAPI(student);
-        Assert.assertEquals(1, res);
+		Student student = new Student(5, "홍길동5", "lee@test.co.kr", new PhoneNumber("010-1234-1234"), newDate.getTime());
+		int res = service.createStudentWithAPI(student);
+		Assert.assertEquals(1, res);
 	}
-	
+
 	@Test
 	public void test4UpdateStudentWithAPI() {
 		Student student = new Student();
@@ -67,58 +66,73 @@ public class StudentServiceTest {
 		student.setEmail("test@test.co.kr");
 		student.setPhone(new PhoneNumber("987-654-3211"));
 		student.setDob(new Date());
-		
+
 		int res = service.updateStudentWithAPI(student);
 		Assert.assertSame(1, res);
 	}
-	
+
 	@Test
 	public void test5DeleteStudentWithAPI() {
-		
+
 		int res = service.deleteStudentWithAPI(5);
 		Assert.assertSame(1, res);
 	}
-	
+
 	@Test
 	public void test6SelectStudentByAllForResultMapWithAPI() {
 		List<Student> lists = service.findStudentByAllWithAPI();
 		List<Student> listsAPI = service.selectStudentByAllForResultMapWithAPI();
 		Assert.assertSame(lists.size(), listsAPI.size());
-		
+
 	}
-	
+
 	@Test
 	public void test7SelectStudentByAllForHashMapWithAPI() {
 		List<Map<String, Object>> listMaps = service.selectStudentByAllForHashMapWithAPI();
 		List<Student> lists2 = service.findStudentByAllWithAPI();
-		
+
 		Assert.assertSame(listMaps.size(), lists2.size());
-		
-		for(Map<String, Object> map : listMaps) {
-			for(Entry<String, Object> e:  map.entrySet()) {
+
+		for (Map<String, Object> map : listMaps) {
+			for (Entry<String, Object> e : map.entrySet()) {
 				System.out.printf("key %s => value %s %n", e.getKey(), e.getValue());
 			}
 		}
 	}
+
 	@Test
 	public void test8SelectStudentByNoForResultMapExtendsWithAPI() {
 		Student student = new Student();
 		student.setStudId(1);
-		
+
 		Student extStdApi = service.selectStudentByNoForResultMapExtendsWithAPI(student);
-		
+
 		Assert.assertEquals(1, extStdApi.getStudId());
-		
+
 	}
-	
+
 	@Test
 	public void test9SelectStudentByNoAssociationWithAPI() {
 		Student student = new Student();
 		student.setStudId(1);
-		
+
 		Student extStdd = service.selectStudentByNoAssociationWithAPI(student);
-		
+
 		Assert.assertEquals(1, extStdd.getStudId());
 		System.out.println(extStdd);
+	}
+
+	@Test
+	public void testFCreateEnumStudentWithAPI() {
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(1990, 2, 28);
+
+		Student student = new Student(5, "홍길동5", "lee@test.co.kr", new PhoneNumber("010-1234-1234"), newDate.getTime());
+		student.setGender(Gender.FEMALE);
+		int res = service.createEnumStudentWithAPI(student);
+		Assert.assertEquals(1, res);
+		System.out.println(student);
+
+		test5DeleteStudentWithAPI();
 	}
 }

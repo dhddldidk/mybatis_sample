@@ -29,6 +29,11 @@
         values(#{studId}, #{name}, #{email}, #{phone}, #{dob})
 	</sql>
 	
+	<insert id="insertEnumStudentWithAPI" parameterType="Student">
+		insert into students(stud_id, name, email, phone, dob, gender) 
+        values(#{studId}, #{name}, #{email}, #{phone}, #{dob},#{gender})
+	</insert>
+	
 	<insert id="insertStudentWithAPI" parameterType="Student">
 		<include refid="insertSql"/>
 	</insert>
