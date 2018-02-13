@@ -9,12 +9,25 @@
 		<collection property="courses"
 			resultMap="kr.or.dgit.mybatis_sample.dao.CourseDao.CourseResult"></collection>
 	</resultMap>
+	
+	<resultMap type="Tutor" id="TutorWithAddressResult" extends="TutorResult">
+		<result property="address.addrId" column="addr_id"></result>
+		<result property="address.street" column="street"></result>
+		<result property="address.city" column="city"></result>
+		<result property="address.state" column="state"></result>
+		<result property="address.zip" column="zip"></result>
+		<result property="address.country" column="country"></result>
+	</resultMap>
 
+<resultMap type="Tutor" id="TutorAssociation" extends="TutorResult">
+		<association property="address" resultMap="kr.or.dgit.mybatis_sample.dao.AddressDao.AddressResult"></association>
+	</resultMap>
 	<sql id="selectSql">
 		select t.tutor_id, t.name as tutor_name, email,
-		c.course_id, c.name,
-		description, start_date, end_date from tutors t left outer join addresses a on
-		t.addr_id=a.addr_id
+		c.course_id,
+		a.addr_id, street, city, state, zip, country,
+		c.name, description, start_date, end_date
+		from tutors t left outer join addresses a on t.addr_id=a.addr_id
 		left outer join courses c on t.tutor_id=c.tutor_id
 	</sql>
 	<sql id="whereSql">
@@ -24,7 +37,8 @@
 			</if>
 		</where>
 	</sql>
-	<select id="selectTutorByTutorId" parameterType="Tutor" resultMap="TutorResult">
+	<select id="selectTutorByTutorId" parameterType="Tutor"
+		resultMap="TutorAssociation">
 		<include refid="selectSql"></include>
 		<include refid="whereSql"></include>
 	</select>

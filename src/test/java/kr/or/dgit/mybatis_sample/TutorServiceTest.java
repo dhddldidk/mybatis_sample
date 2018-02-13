@@ -32,6 +32,7 @@ public class TutorServiceTest {
 		findTutor.setTutorId(1);
 		Tutor tutor = service.findTutorByTutorId(findTutor);
 		Assert.assertSame(findTutor.getTutorId(), tutor.getTutorId());
+		System.out.println(tutor);
 	}
 
 }

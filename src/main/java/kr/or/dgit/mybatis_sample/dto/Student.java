@@ -2,6 +2,8 @@ package kr.or.dgit.mybatis_sample.dto;
 
 import java.util.Date;
 
+import kr.or.dgit.mybatis_sample.type.Gender;
+
 public class Student {
 	private int studId;
 	private String name;
@@ -9,6 +11,7 @@ public class Student {
 	private PhoneNumber phone;
 	private Date dob;
 	private Address address;
+	private Gender gender;
 
 	public Student() {
 		// TODO Auto-generated constructor stub
@@ -18,7 +21,6 @@ public class Student {
 		this.studId = studId;
 	}
 
-	
 	public Student(int studId, String name, String email, PhoneNumber phone, Date dob) {
 		super();
 		this.studId = studId;
@@ -86,10 +88,18 @@ public class Student {
 		this.address = address;
 	}
 
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("Student [studId=%s, name=%s, email=%s, phone=%s, dob=%s, address=%s]", studId, name,
-				email, phone, dob, address);
+		return String.format("Student [studId=%s, name=%s, email=%s, phone=%s, dob=%s, address=%s, gender=%s]", studId,
+				name, email, phone, dob, address, gender);
 	}
 
 }
