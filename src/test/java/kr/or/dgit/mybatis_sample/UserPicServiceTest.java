@@ -1,14 +1,11 @@
 package kr.or.dgit.mybatis_sample;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -32,9 +29,9 @@ public class UserPicServiceTest {
 	}
 
 	@Test
-	public void test() {
+	public void testAInsertUserPic() {
 		UserPic userPic = new UserPic();
-		userPic.setName("HanKiMin");
+		userPic.setName("HanjiMin");
 		userPic.setBio("put some lengthy bio here");
 		userPic.setPic(getPicFile());
 		
@@ -60,7 +57,9 @@ public class UserPicServiceTest {
 
 	@Test
 	public void testBGetUserPic() {
-		UserPic userPic = service.getUserPicWithAPI(1);
+		UserPic findUserPic = new UserPic();
+		findUserPic.setId(1);
+		UserPic userPic = service.getUserPicWithAPI(findUserPic);
 		Assert.assertNotNull(userPic);
 	}
 }

@@ -4,5 +4,5 @@ import kr.or.dgit.mybatis_sample.dto.UserPic;
 
 public interface UserPicDao {
 	int insertUserPicWithAPI(UserPic userPic);
-	UserPic getUserPicWithAPI(int id);
+	UserPic getUserPicWithAPI(UserPic userPic);
 }
