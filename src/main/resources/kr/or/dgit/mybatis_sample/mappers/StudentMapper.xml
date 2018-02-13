@@ -41,6 +41,11 @@
 		<include refid="insertSql"/>
 	</insert>
 	
+	<insert id="insertEnumStudent" parameterType="Student">
+		insert into students(stud_id, name, email, phone, dob, gender) 
+        values(#{studId}, #{name}, #{email}, #{phone}, #{dob},#{gender})
+	</insert>
+	
 	<!-- update -->
 	<update id="updateStudent" parameterType="Student">
 		<include refid="updatesql"></include>

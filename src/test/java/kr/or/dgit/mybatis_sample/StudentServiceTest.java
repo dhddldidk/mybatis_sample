@@ -18,6 +18,7 @@ import org.junit.runners.MethodSorters;
 import kr.or.dgit.mybatis_sample.dto.PhoneNumber;
 import kr.or.dgit.mybatis_sample.dto.Student;
 import kr.or.dgit.mybatis_sample.service.StudentService;
+import kr.or.dgit.mybatis_sample.type.Gender;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentServiceTest {
@@ -131,6 +132,23 @@ public class StudentServiceTest {
 
 		Assert.assertEquals(1, extStdd.getStudId());
 		System.out.println(extStdd);
+	}
+
+	@Test
+	public void testFCreateEnumStudent() {
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(1990, 2, 28);
+
+		Student student = new Student(3, "홍길동3", "lee@test.co.kr", new PhoneNumber("010-1234-1234"), newDate.getTime());
+		student.setGender(Gender.FEMALE);
+		int res = service.createEnumStudent(student);
+		// sql쿼리대로 문장이 잘 수행되면 1을 반환해서 res에 담아서
+		// Assert.assertEquals(1, res);에서 equals에 1과 같으면
+		// 성공 아니면 에러가 뜸
+		Assert.assertEquals(1, res);
+		System.out.println(student);
+		
+		test5DeleteStudent();
 	}
 
 }
