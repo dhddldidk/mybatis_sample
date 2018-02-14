@@ -10,10 +10,10 @@
 	</resultMap>
 
 	<sql id="courseSql">
-		<!-- select course_id, name, description, start_date, end_date,
+		select course_id, name, description, start_date, end_date,
 		tutor_id
-		from courses -->
-		select * from courses
+		from courses
+		
 	</sql>
 	<sql id="whereSql">
 		<where>
@@ -34,4 +34,83 @@
 		<include refid="courseSql"></include>
 		<include refid="whereSql"></include>
 	</select>
+	
+	<!-- choose 엘리먼트 사용 -->
+	<sql id="chooseSql">
+		<choose>
+			<when test="searchBy=='Tutor'">
+				where tutor_id=#{tutorId}
+			</when>
+			<when test="searchBy=='name'">
+				where name like #{name}
+			</when>
+			<otherwise>
+				where end_date &gt;=now()
+			</otherwise>
+		</choose>
+	</sql>
+	<select id="selectCaseCourses" parameterType="map" resultMap="CourseResult">
+		<include refid="courseSql"></include>
+		<include refid="chooseSql"></include>
+	</select>
+	
+	<!-- where조건 사용 -->
+	<sql id="whereSql2">
+		<where>
+			<if test="tutorId != null">
+				tutor_id = #{tutorId}
+			</if>
+			<if test="name != null">
+				and name like #{name}
+			</if>
+			<if test="startDate != null">
+				and start_date &gt;= #{startDate}
+			</if>
+			<if test="endDate != null">
+				and end_date &lt;= #{endDate}
+			</if>
+		</where>
+	</sql>
+	<select id="selectWhereCourses" parameterType="map" resultMap="CourseResult">
+		<include refid="courseSql"></include>
+		<include refid="whereSql2"></include>
+	</select>
+	
+	<!-- trim 조건 -->
+	<sql id="whereTrimSql">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<!-- where 자동추가 -->
+			<if test="tutorId != null">
+				tutor_id=#{tutorId}
+			</if>
+			<!-- 만약 where tutor_id=1이 추가된 경우 where 삭제 -->
+			<if test="name != null">
+				and name like #{name}
+			</if>
+		</trim>
+	</sql>
+	<select id="selectTrimCourses" parameterType="map" resultMap="CourseResult">
+		<include refid="courseSql"></include>
+		<include refid="whereTrimSql"></include>
+	</select>
+	
+	<!-- foreach 루프 -->
+	<sql id="foreeachSql">
+		<if test="tutorIds != null">
+			<where>
+				tutor_id in
+				<foreach item="tutorId" collection="tutorIds" index="index"
+					open="(" close=")" separator=",">
+					#{tutorId}
+					</foreach>
+			</where>
+		</if>
+	</sql>
+	<select id="selectCoursesForeachByTutors" parameterType="map"
+		resultMap="CourseResult">
+		<include refid="courseSql"></include>
+		<include refid="foreeachSql"></include>
+	</select>
+	
+	<!-- set 조건 -->
 </mapper>
