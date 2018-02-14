@@ -169,4 +169,12 @@ public class StudentServiceTest {
 		Assert.assertNotNull(student);
 	}
 
+	 @Test
+	    public void testISelectStudentForMapWithAPI() {
+	        Map<Integer, String> map = service.selectStudentForMapWithAPI();
+	        Assert.assertNotNull(map);
+	        for(Entry<Integer, String>entry : map.entrySet()){
+	            System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
+	        }
+	    }
 }
