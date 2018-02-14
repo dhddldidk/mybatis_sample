@@ -9,4 +9,12 @@
 		<result property="zip" column="zip"></result>
 		<result property="country" column="country"></result>
 	</resultMap>
+	
+	<!-- 매퍼 XML row바운드 -->
+	<sql id="selectSql">
+		select addr_id, street, city, state, zip, country from addresses
+	</sql>
+	<select id="selectAddressByAllWithAPI" resultMap="AddressResult">
+		<include refid="selectSql"></include>
+	</select>
 </mapper>
