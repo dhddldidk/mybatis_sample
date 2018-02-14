@@ -35,4 +35,6 @@ public interface StudentDao {
 	Student selectAllStudentByStudent(Student student);
 	Student selectAllStudentByMap(Map<String, String> map);
 	
+	// ResultSet 처리방식의 재정의
+    Map<String, Object> selectStudentForMap(Student student);
 }

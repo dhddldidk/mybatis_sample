@@ -180,5 +180,15 @@ public class StudentServiceTest {
 		System.out.println(student);
 	}
 
+	@Test
+	public void testJselectStudentForMap() {
+		Map<String, Object> map = service.selectStudentForMap(new Student(1));
+		Assert.assertNotNull(map);
 
+			for (Entry<String, Object> entry : map.entrySet()) {
+				System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
+			}
+		
+
+	}
 }

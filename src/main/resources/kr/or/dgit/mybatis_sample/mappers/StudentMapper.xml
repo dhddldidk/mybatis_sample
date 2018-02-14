@@ -140,6 +140,12 @@
 		<include refid="whereNameEmailSql"></include>
 	</select>
 	
+	<!-- ResultSet 처리방식의 재정의 -->
+    <select id="selectStudentForMap" resultType="map" parameterType="Student">
+        <include refid="selectParameterSql" />
+        <include refid="whereSql"/>
+    </select>
+	
 </mapper>
 
 

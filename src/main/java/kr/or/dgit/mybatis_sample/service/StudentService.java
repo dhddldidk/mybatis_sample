@@ -134,4 +134,22 @@ public class StudentService {
 			return studentDao.selectAllStudentByMap(map);
 		}
 	}
+	
+//	ResultSet 처리방식의 재정의
+	public Map<String, Object> selectStudentForMap(Student student){
+		log.debug("selectStudentForMap()");
+/*		Map<Integer, String> map = new HashMap<>();
+        ResultHandler<Student> resultHandler = new ResultHandler<Student>() {
+            @Override
+            public void handleResult(ResultContext<? extends Student> resultContext) {
+                Student student = resultContext.getResultObject();
+                map.put(student.getStudId(), student.getName());                
+            }
+        };*/
+
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentForMap(student);
+		}
+	}
 }
