@@ -70,12 +70,12 @@ public class StudentServiceTest {
 
 		int res = service.updateStudentWithAPI(student);
 		Assert.assertSame(1, res);
-		
+
 		student.setEmail("timothy@gmail.com");
-        student.setPhone(new PhoneNumber("123-123-1234"));
-        student.setDob(new GregorianCalendar(1988, 04, 25).getTime());
-        res = service.updateStudentWithAPI(student);
-        Assert.assertSame(1, res);
+		student.setPhone(new PhoneNumber("123-123-1234"));
+		student.setDob(new GregorianCalendar(1988, 04, 25).getTime());
+		res = service.updateStudentWithAPI(student);
+		Assert.assertSame(1, res);
 	}
 
 	@Test
@@ -113,12 +113,13 @@ public class StudentServiceTest {
 		student.setStudId(1);
 
 		Student extStdApi = service.selectStudentByNoForResultMapExtendsWithAPI(student);
-		
+
 		Assert.assertEquals(1, extStdApi.getStudId());
 
-		//이 문장과 같음
-		//Student searchStd = service.selectStudentByNoForResultMapExtendsWithAPI(new Student(1));
-		//Assert.assertNotNull(searchStd);
+		// 이 문장과 같음
+		// Student searchStd = service.selectStudentByNoForResultMapExtendsWithAPI(new
+		// Student(1));
+		// Assert.assertNotNull(searchStd);
 	}
 
 	@Test
@@ -130,10 +131,11 @@ public class StudentServiceTest {
 
 		Assert.assertEquals(1, extStdd.getStudId());
 		System.out.println(extStdd);
-		
-		//이 문장과 같음
-		//Student searchStd = service.selectStudentByNoAssociationWithAPI(new Student(1));
-		//Assert.assertNotNull(searchStd);
+
+		// 이 문장과 같음
+		// Student searchStd = service.selectStudentByNoAssociationWithAPI(new
+		// Student(1));
+		// Assert.assertNotNull(searchStd);
 	}
 
 	@Test
@@ -150,7 +152,6 @@ public class StudentServiceTest {
 		test5DeleteStudentWithAPI();
 	}
 
-	
 	@Test
 	public void testTBFindAllStudentByStudentWithAPI() {
 		Student std = new Student();
@@ -169,12 +170,29 @@ public class StudentServiceTest {
 		Assert.assertNotNull(student);
 	}
 
-	 @Test
-	    public void testISelectStudentForMapWithAPI() {
-	        Map<Integer, String> map = service.selectStudentForMapWithAPI();
-	        Assert.assertNotNull(map);
-	        for(Entry<Integer, String>entry : map.entrySet()){
-	            System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
-	        }
-	    }
+	@Test
+	public void testISelectStudentForMapWithAPI() {
+		Map<Integer, String> map = service.selectStudentForMapWithAPI();
+		Assert.assertNotNull(map);
+		for (Entry<Integer, String> entry : map.entrySet()) {
+			System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
+		}
+	}
+
+	@Test
+	public void testJUpdateSetStudentWithAPI() {
+		Student student = new Student();
+		student.setStudId(1);
+		student.setPhone(new PhoneNumber("987-654-3211"));
+		student.setDob(new Date());
+
+		int res = service.updateSetStudentWithAPI(student);
+		Assert.assertSame(1, res);
+
+		student.setPhone(new PhoneNumber("123-123-1234"));
+		student.setDob(new GregorianCalendar(1988, 04, 25).getTime());
+
+		res = service.updateSetStudentWithAPI(student);
+		Assert.assertSame(1, res);
+	}
 }

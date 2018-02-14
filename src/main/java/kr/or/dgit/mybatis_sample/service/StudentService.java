@@ -158,4 +158,19 @@ public class StudentService {
 			return map;
 		}
 	}
+	public int updateSetStudentWithAPI(Student student) {
+		log.debug("updateSetStudentWithAPI()");
+		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+		try {
+			int res = sqlSession.update(namespace + "updateSetStudentWithAPI", student);
+			sqlSession.commit();
+			return res;
+		} catch(Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+			throw new RuntimeException(e.getCause());
+		}finally {
+			sqlSession.close();
+		}
+	}
 }
