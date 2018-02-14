@@ -17,4 +17,16 @@
 	<select id="selectAddressByAll" resultMap="AddressResult">
 		<include refid="selectSql"></include>
 	</select>
+	
+	<!-- 매퍼 XML row바운드 limit-->
+	<sql id="selectSqlLimit">
+		SELECT addr_id, street, city, state, zip, country
+		FROM
+		addresses
+		limit #{offset}, #{limit};
+	</sql>
+
+	<select id="selectAddressLimitByAll" resultMap="AddressResult" parameterType="map">
+		<include refid="selectSqlLimit" />
+	</select>
 </mapper>

@@ -1,6 +1,7 @@
 package kr.or.dgit.mybatis_sample.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -21,5 +22,13 @@ public class AddressService {
 			return addressDao.selectAddressByAll(rowBounds);
 		}
 		
+	}
+	
+	public List<Address> selectAddressLimitByAll(Map<String, Integer> map) {
+		log.debug("selectAddressLimitByAll()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			AddressDao addressDao = sqlSession.getMapper(AddressDao.class);
+			return addressDao.selectAddressLimitByAll(map);
+		}
 	}
 }
