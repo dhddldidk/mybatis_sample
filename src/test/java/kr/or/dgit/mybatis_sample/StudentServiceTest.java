@@ -3,6 +3,7 @@ package kr.or.dgit.mybatis_sample;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -69,6 +70,12 @@ public class StudentServiceTest {
 
 		int res = service.updateStudentWithAPI(student);
 		Assert.assertSame(1, res);
+		
+		student.setEmail("timothy@gmail.com");
+        student.setPhone(new PhoneNumber("123-123-1234"));
+        student.setDob(new GregorianCalendar(1988, 04, 25).getTime());
+        res = service.updateStudentWithAPI(student);
+        Assert.assertSame(1, res);
 	}
 
 	@Test
@@ -106,9 +113,12 @@ public class StudentServiceTest {
 		student.setStudId(1);
 
 		Student extStdApi = service.selectStudentByNoForResultMapExtendsWithAPI(student);
-
+		
 		Assert.assertEquals(1, extStdApi.getStudId());
 
+		//이 문장과 같음
+		//Student searchStd = service.selectStudentByNoForResultMapExtendsWithAPI(new Student(1));
+		//Assert.assertNotNull(searchStd);
 	}
 
 	@Test
@@ -120,6 +130,10 @@ public class StudentServiceTest {
 
 		Assert.assertEquals(1, extStdd.getStudId());
 		System.out.println(extStdd);
+		
+		//이 문장과 같음
+		//Student searchStd = service.selectStudentByNoAssociationWithAPI(new Student(1));
+		//Assert.assertNotNull(searchStd);
 	}
 
 	@Test
@@ -135,4 +149,24 @@ public class StudentServiceTest {
 
 		test5DeleteStudentWithAPI();
 	}
+
+	
+	@Test
+	public void testTBFindAllStudentByStudentWithAPI() {
+		Student std = new Student();
+		std.setName("Timothy");
+		std.setEmail("timothy@gmail.com");
+		Student student = service.selectAllStudentByStudentWithAPI(std);
+		Assert.assertNotNull(student);
+	}
+
+	@Test
+	public void testTCFindAllStudentByMapWithAPI() {
+		Map<String, String> maps = new HashMap<>();
+		maps.put("name", "Timothy");
+		maps.put("email", "timothy@gmail.com");
+		Student student = service.selectAllStudentByMapWithAPI(maps);
+		Assert.assertNotNull(student);
+	}
+
 }

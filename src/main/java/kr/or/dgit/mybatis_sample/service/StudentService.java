@@ -124,5 +124,19 @@ public class StudentService {
 		}
 	}
 	
+	//여러개의 입력 파라미터
+	
+	public Student selectAllStudentByStudentWithAPI(Student student) {
+		log.debug("selectAllStudentByStudentWithAPI()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectStudentByStudentWithAPI", student);
+		}
+	}
+	public Student selectAllStudentByMapWithAPI(Map<String, String> map) {
+		log.debug("selectAllStudentByMapWithAPI()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectStudentByMapWithAPI", map);
+		}
+	}
 	
 }
