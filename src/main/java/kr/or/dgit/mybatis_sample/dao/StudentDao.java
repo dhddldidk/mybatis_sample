@@ -29,4 +29,9 @@ public interface StudentDao {
 
 	// delete
 	int deleteStudent(int id);
+	
+	//여러개의 입력 파라미터 전달
+	Student selectAllStudentByParam(String name, String email);
+	Student selectAllStudentByStudent(Student student);
+	Student selectAllStudentByMap(Map<String, String> map);
 }
