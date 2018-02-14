@@ -141,9 +141,8 @@
 	</select>
 	
 	<!-- ResultSet 처리방식의 재정의 -->
-    <select id="selectStudentForMap" resultType="map" parameterType="Student">
+    <select id="selectStudentForMap" resultMap="StudentGenderResult">
         <include refid="selectParameterSql" />
-        <include refid="whereSql"/>
     </select>
 	
 </mapper>

@@ -1,5 +1,6 @@
 package kr.or.dgit.mybatis_sample.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -136,20 +137,19 @@ public class StudentService {
 	}
 	
 //	ResultSet 처리방식의 재정의
-	public Map<String, Object> selectStudentForMap(Student student){
+	public Map<Integer, String> selectStudentForMap(){
 		log.debug("selectStudentForMap()");
-/*		Map<Integer, String> map = new HashMap<>();
-        ResultHandler<Student> resultHandler = new ResultHandler<Student>() {
-            @Override
-            public void handleResult(ResultContext<? extends Student> resultContext) {
-                Student student = resultContext.getResultObject();
-                map.put(student.getStudId(), student.getName());                
-            }
-        };*/
+		
+		Map<Integer, String> map = new HashMap<>();
 
+		
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
-			return studentDao.selectStudentForMap(student);
+			List<Student> list = studentDao.selectStudentForMap();
+			for(Student s : list) {
+				map.put(s.getStudId(), s.getName());
+			}
+			return map;
 		}
 	}
 }

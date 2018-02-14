@@ -182,13 +182,11 @@ public class StudentServiceTest {
 
 	@Test
 	public void testJselectStudentForMap() {
-		Map<String, Object> map = service.selectStudentForMap(new Student(1));
-		Assert.assertNotNull(map);
-
-			for (Entry<String, Object> entry : map.entrySet()) {
-				System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
-			}
-		
+		Map<Integer, String> result = service.selectStudentForMap();
+		Assert.assertNotNull(result);
+		for (Entry<Integer, String> entry : result.entrySet()) {
+			System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
+		}
 
 	}
 }
