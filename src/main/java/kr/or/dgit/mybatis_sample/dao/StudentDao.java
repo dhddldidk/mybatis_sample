@@ -34,4 +34,5 @@ public interface StudentDao {
 	Student selectAllStudentByParam(String name, String email);
 	Student selectAllStudentByStudent(Student student);
 	Student selectAllStudentByMap(Map<String, String> map);
+	
 }
