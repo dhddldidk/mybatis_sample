@@ -8,4 +8,30 @@
 		<result property="startDate" column="start_date"></result>
 		<result property="endDate" column="end_date"></result>
 	</resultMap>
+
+	<sql id="courseSql">
+		<!-- select course_id, name, description, start_date, end_date,
+		tutor_id
+		from courses -->
+		select * from courses
+	</sql>
+	<sql id="whereSql">
+		<where>
+			<if test="name != null">
+				and name like #{name}
+			</if>
+			<if test="startDate != null">
+				and start_date &gt;= #{startDate}
+			</if>
+			<if test="endDate != null">
+				and end_date &lt;= #{endDate}
+			</if>
+		</where>
+	</sql>
+
+	<select id="selectCoursesByCondition" parameterType="map"
+		resultMap="CourseResult">
+		<include refid="courseSql"></include>
+		<include refid="whereSql"></include>
+	</select>
 </mapper>
